@@ -1,6 +1,6 @@
 # Netflix clone using next js and node js
 <hr/>
-This project is built using next js and node js where next js is used for both client and server side rendering and node js is used for buliding APIS and for authentication part.
+This project is built using next js and node js where next js is used for both client and server side rendering and node js is used for buliding authentication and APIs.
 <hr/>
 
 # UI of the projects
