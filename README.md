@@ -1,17 +1,11 @@
 # Netflix clone using next js and node js
 <hr/>
-This project is built using next js and node js where next js is used for bot client and server side rendering and node js is used for buliding APIS and for authentication part.
+This project is built using next js and node js where next js is used for both client and server side rendering and node js is used for buliding APIS and for authentication part.
 <hr/>
 
 # UI of the projects
 <details>
-  <div style="display:flex; justify-content:center; align-items:center;">
-    
-   
-
-
-
-
+  <div style="display:flex; justify-content:center; gap:10; align-items:center;">
 <img src="https://github.com/PaudelSworup/next-netflix-clone/assets/96978659/4646d3f1-1ef2-4dba-b672-bdafab04c8d3)" width="400" height="300" />
  
 <img src="https://github.com/PaudelSworup/next-netflix-clone/assets/96978659/3a50a558-316d-44d7-8d54-1442ed28fe2e" width="400" height="300" />
