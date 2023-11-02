@@ -12,7 +12,7 @@ This project is built using next js and node js where next js is used for bot cl
 
 
 
-<img src="[https://img.icons8.com/?size=48&id=20909&format=png](https://github.com/PaudelSworup/next-netflix-clone/assets/96978659/4646d3f1-1ef2-4dba-b672-bdafab04c8d3)" width="400" height="300" />
+<img src="https://github.com/PaudelSworup/next-netflix-clone/assets/96978659/4646d3f1-1ef2-4dba-b672-bdafab04c8d3)" width="400" height="300" />
  
 <img src="https://github.com/PaudelSworup/next-netflix-clone/assets/96978659/3a50a558-316d-44d7-8d54-1442ed28fe2e" width="400" height="300" />
  
