@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export default function middleware(req:NextRequest){
-    const JWTSECRET = process.env.JWT_SECRET
-    console.log(JWTSECRET)
     const token = req.cookies.get("token")?.value
     let url = req.url
 
