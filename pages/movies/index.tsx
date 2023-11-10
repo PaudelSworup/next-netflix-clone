@@ -8,14 +8,17 @@ import {
   horror,
   mystery,
   nowPlaying,
-  romance,
   scifi,
   topRated,
   tv,
   upComing,
   western,
 } from "@/APIs/moviesAPI";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import {
+  GetServerSideProps,
+  GetStaticProps,
+  InferGetServerSidePropsType,
+} from "next";
 import React, { useEffect, useState } from "react";
 import { useQueries } from "react-query";
 import { movies } from "@/Interfaces/interface";
@@ -40,63 +43,62 @@ const Movies = ({
   animation,
   horror,
   scifi,
-  romance,
   tv,
   mystery,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const results = useQueries([
-    {
-      queryKey: ["trending"],
-      queryFn: async () => await getTrending(),
-    },
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  // const results = useQueries([
+  //   {
+  //     queryKey: ["trending"],
+  //     queryFn: async () => await getTrending(),
+  //   },
 
-    {
-      queryKey: ["originals"],
-      queryFn: async () => await getNetflixOriginals(),
-    },
+  //   {
+  //     queryKey: ["originals"],
+  //     queryFn: async () => await getNetflixOriginals(),
+  //   },
 
-    {
-      queryKey: ["popular"],
-      queryFn: async () => await getPopular(),
-    },
+  //   {
+  //     queryKey: ["popular"],
+  //     queryFn: async () => await getPopular(),
+  //   },
 
-    {
-      queryKey: ["rated"],
-      queryFn: async () => await topRated(),
-    },
+  //   {
+  //     queryKey: ["rated"],
+  //     queryFn: async () => await topRated(),
+  //   },
 
-    {
-      queryKey: ["np"],
-      queryFn: async () => await nowPlaying(),
-    },
+  //   {
+  //     queryKey: ["np"],
+  //     queryFn: async () => await nowPlaying(),
+  //   },
 
-    {
-      queryKey: ["uc"],
-      queryFn: async () => await upComing(),
-    },
+  //   {
+  //     queryKey: ["uc"],
+  //     queryFn: async () => await upComing(),
+  //   },
 
-    {
-      initialData: {
-        data: {
-          trending,
-          originals,
-          popular,
-          rated,
-          np,
-          uc,
-          western,
-          comedy,
-          action,
-          animation,
-          horror,
-          scifi,
-          romance,
-          tv,
-          mystery,
-        },
-      },
-    },
-  ]);
+  //   {
+  //     initialData: {
+  //       data: {
+  //         trending,
+  //         originals,
+  //         popular,
+  //         rated,
+  //         np,
+  //         uc,
+  //         western,
+  //         comedy,
+  //         action,
+  //         animation,
+  //         horror,
+  //         scifi,
+  //         romance,
+  //         tv,
+  //         mystery,
+  //       },
+  //     },
+  //   },
+  // ]);
 
   const { username } = useAppSelector((state) => state.auth);
   const [user, setUser] = useState<string | null>("");
@@ -133,7 +135,7 @@ const Movies = ({
 
 export default Movies;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const trending = await getTrending();
 
   const netflixOriginals = await getNetflixOriginals();
@@ -162,8 +164,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const scifiM = await scifi();
 
-  const romanceM = await romance();
-
   return {
     props: {
       trending: trending?.data?.movies,
@@ -180,7 +180,58 @@ export const getStaticProps: GetStaticProps = async (context) => {
       tv: tvShows?.data?.movies,
       mystery: mysteryM?.data?.movies,
       scifi: scifiM?.data?.movies,
-      romance: romanceM?.data?.movies,
     },
   };
 };
+
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   const trending = await getTrending();
+
+//   const netflixOriginals = await getNetflixOriginals();
+
+//   const popular = await getPopular();
+
+//   const top_rated = await topRated();
+
+//   const now_playing = await nowPlaying();
+
+//   const upcoming = await upComing();
+
+//   const westernM = await western();
+
+//   const comedyM = await comedy();
+
+//   const actionM = await action();
+
+//   const animationM = await animation();
+
+//   const horrorM = await horror();
+
+//   const tvShows = await tv();
+
+//   const mysteryM = await mystery();
+
+//   const scifiM = await scifi();
+
+//   const romanceM = await romance();
+
+//   return {
+//     props: {
+//       trending: trending?.data?.movies,
+//       originals: netflixOriginals?.data?.movies,
+//       popular: popular?.data?.movies,
+//       rated: top_rated?.data?.movies,
+//       np: now_playing?.data?.movies,
+//       uc: upcoming?.data?.movies,
+//       western: westernM?.data?.movies,
+//       comedy: comedyM?.data?.movies,
+//       action: actionM?.data?.movies,
+//       animation: animationM?.data?.movies,
+//       horror: horrorM?.data?.movies,
+//       tv: tvShows?.data?.movies,
+//       mystery: mysteryM?.data?.movies,
+//       scifi: scifiM?.data?.movies,
+//       romance: romanceM?.data?.movies,
+//     },
+//   };
+// };
