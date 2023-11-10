@@ -16,7 +16,7 @@ const MovieBg: React.FC<{ moviesData: singleMovie; casts: any[] }> = ({
       toast.error("Error 404 ");
       router.push("/movies");
     }
-  }, []);
+  }, [moviesData, casts, router]);
 
   const [movieCast, showMovieCast] = useState<boolean>(false);
 

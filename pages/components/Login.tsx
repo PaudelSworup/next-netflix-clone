@@ -8,6 +8,7 @@ import { logIn } from "@/Store/features/AuthSlice";
 import { AppDispatch } from "@/Store/store";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Login = () => {
   const router = useRouter();
@@ -54,7 +55,13 @@ const Login = () => {
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img className="w-30 h-8 " src="./net.jpg" alt="logo" />
+          <Image
+            style={{ width: "120px", height: "32px" }}
+            width={10}
+            height={10}
+            src="./net.jpg"
+            alt="logo"
+          />
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
