@@ -1,12 +1,21 @@
 import {
+  action,
+  animation,
+  comedy,
   getMovieCast,
   getNetflixOriginals,
   getPopular,
   getSingleMovie,
   getTrending,
+  horror,
+  mystery,
   nowPlaying,
+  romance,
+  scifi,
   topRated,
+  tv,
   upComing,
+  western,
 } from "@/APIs/moviesAPI";
 import { movies } from "@/Interfaces/interface";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
@@ -45,6 +54,15 @@ export async function getStaticPaths() {
   const popularResponse = await getPopular();
   const npResponse = await nowPlaying();
   const upcoming = await upComing();
+  const romanceRes = await romance();
+  const animationRes = await animation();
+  const scifiRes = await scifi();
+  const actionRes = await action();
+  const horrorRes = await horror();
+  const mysteryRes = await mystery();
+  const westernRes = await western();
+  const comedyRes = await comedy();
+  const tvRes = await tv();
   // const similarResponse = await getSimilarMovies("i need movie id here")
 
   const trending = (await trendingResponse?.data?.movies) || [];
@@ -55,7 +73,33 @@ export async function getStaticPaths() {
 
   const uc = (await upcoming?.data?.movies) || [];
 
-  const datas = [...trending, ...original, ...tr, ...popular, ...np, ...uc];
+  const romance_res = (await romanceRes?.data?.movies) || [];
+  const horror_res = (await horrorRes?.data?.movies) || [];
+  const animation_res = (await animationRes?.data?.movies) || [];
+  const scifi_res = (await scifiRes?.data?.movies) || [];
+  const action_res = (await actionRes?.data?.movies) || [];
+  const mystery_res = (await mysteryRes?.data?.movies) || [];
+  const western_res = (await westernRes?.data?.movies) || [];
+  const comedy_res = (await comedyRes?.data?.movies) || [];
+  const tv_res = (await tvRes?.data?.movies) || [];
+
+  const datas = [
+    ...trending,
+    ...original,
+    ...tr,
+    ...popular,
+    ...np,
+    ...uc,
+    ...romance_res,
+    ...horror_res,
+    ...animation_res,
+    ...scifi_res,
+    ...action_res,
+    ...mystery_res,
+    ...western_res,
+    ...comedy_res,
+    ...tv_res,
+  ];
 
   const paths = datas?.map((movie: movies) => {
     return {

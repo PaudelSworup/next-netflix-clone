@@ -1,2 +1,2 @@
-export const API: string = "http://localhost:8000/api";
+export const API: string = "https://netflix-f5xu.onrender.com/api";
 export const imageURL: string = "https://image.tmdb.org/t/p/original";

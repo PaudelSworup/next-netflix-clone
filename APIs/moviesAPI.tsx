@@ -60,6 +60,89 @@ export const upComing = async (): Promise<AxiosResponse> => {
   }
 };
 
+export const action = async (): Promise<AxiosResponse> => {
+  try {
+    const res: AxiosResponse<moviesAPIRes> = await axios.get(`${API}/action`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const mystery = async (): Promise<AxiosResponse> => {
+  try {
+    const res: AxiosResponse<moviesAPIRes> = await axios.get(`${API}/mystery`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const animation = async (): Promise<AxiosResponse> => {
+  try {
+    const res: AxiosResponse<moviesAPIRes> = await axios.get(
+      `${API}/animation`
+    );
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const scifi = async (): Promise<AxiosResponse> => {
+  try {
+    const res: AxiosResponse<moviesAPIRes> = await axios.get(`${API}/scifi`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const horror = async (): Promise<AxiosResponse> => {
+  try {
+    const res: AxiosResponse<moviesAPIRes> = await axios.get(`${API}/horror`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const romance = async (): Promise<AxiosResponse> => {
+  try {
+    const res: AxiosResponse<moviesAPIRes> = await axios.get(`${API}/romance`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const tv = async (): Promise<AxiosResponse> => {
+  try {
+    const res: AxiosResponse<moviesAPIRes> = await axios.get(`${API}/tv`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const western = async (): Promise<AxiosResponse> => {
+  try {
+    const res: AxiosResponse<moviesAPIRes> = await axios.get(`${API}/western`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const comedy = async (): Promise<AxiosResponse> => {
+  try {
+    const res: AxiosResponse<moviesAPIRes> = await axios.get(`${API}/comedy`);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
+
 export const getSingleMovie = async (id: string): Promise<AxiosResponse> => {
   try {
     const res: AxiosResponse<moviesAPIRes> = await axios.get(

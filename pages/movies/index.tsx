@@ -1,10 +1,19 @@
 import {
+  action,
+  animation,
+  comedy,
   getNetflixOriginals,
   getPopular,
   getTrending,
+  horror,
+  mystery,
   nowPlaying,
+  romance,
+  scifi,
   topRated,
+  tv,
   upComing,
+  western,
 } from "@/APIs/moviesAPI";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import React, { useEffect, useState } from "react";
@@ -16,6 +25,7 @@ import Banner from "../Banner";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import { useAppSelector } from "@/Store/store";
+import Row from "../components/Row";
 
 const Movies = ({
   trending,
@@ -24,6 +34,15 @@ const Movies = ({
   rated,
   np,
   uc,
+  western,
+  comedy,
+  action,
+  animation,
+  horror,
+  scifi,
+  romance,
+  tv,
+  mystery,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const results = useQueries([
     {
@@ -65,6 +84,15 @@ const Movies = ({
           rated,
           np,
           uc,
+          western,
+          comedy,
+          action,
+          animation,
+          horror,
+          scifi,
+          romance,
+          tv,
+          mystery,
         },
       },
     },
@@ -82,68 +110,26 @@ const Movies = ({
       <Nav />
       <Banner />
       <div className="w-[100%] cursor-pointer">
-        <h2 className="text-white tracking-widest text-xl">
-          Netflix Originals
-        </h2>
-        <div className="flex gap-3 scrollbar_hide overflow-x-scroll p-[20px] ">
-          {originals?.map((movie: movies) => {
-            return (
-              <Posters key={movie?.id} movieData={movie} isLargeRow={true} />
-            );
-          })}
-        </div>
-
-        <h2 className="text-white tracking-widest text-xl">Trending Now</h2>
-        <div className="flex gap-3 scrollbar_hide overflow-x-scroll p-[20px] ">
-          {trending?.map((movie: movies) => {
-            return (
-              <Posters key={movie?.id} movieData={movie} isLargeRow={false} />
-            );
-          })}
-        </div>
-
-        <h2 className="text-white tracking-widest text-xl">Most Popular</h2>
-        <div className="flex gap-3 scrollbar_hide overflow-x-scroll p-[20px] ">
-          {popular?.map((movie: movies) => {
-            return (
-              <Posters key={movie?.id} movieData={movie} isLargeRow={false} />
-            );
-          })}
-        </div>
-
-        <h2 className="text-white tracking-widest text-xl">Top Rated</h2>
-        <div className="flex gap-3 scrollbar_hide overflow-x-scroll p-[20px] ">
-          {rated?.map((movie: movies) => {
-            return (
-              <Posters key={movie?.id} movieData={movie} isLargeRow={false} />
-            );
-          })}
-        </div>
-
-        <h2 className="text-white tracking-widest text-xl">Now Playing</h2>
-        <div className="flex gap-3 scrollbar_hide overflow-x-scroll p-[20px] ">
-          {np?.map((movie: movies) => {
-            return (
-              <Posters key={movie?.id} movieData={movie} isLargeRow={false} />
-            );
-          })}
-        </div>
-
-        <h2 className="text-white tracking-widest text-xl">UpComing</h2>
-        <div className="flex gap-3 scrollbar_hide overflow-x-scroll p-[20px] ">
-          {uc?.map((movie: movies) => {
-            return (
-              <Posters key={movie?.id} movieData={movie} isLargeRow={false} />
-            );
-          })}
-        </div>
+        <Row movie={originals} title="Netflix Originals" isLargeRow={true} />
+        <Row movie={trending} title="Trending Now" isLargeRow={false} />
+        <Row movie={popular} title="Most Popular" isLargeRow={false} />
+        <Row movie={rated} title="Top Rated" isLargeRow={false} />
+        <Row movie={np} title="Now Playing" isLargeRow={false} />
+        <Row movie={western} title="Western" isLargeRow={false} />
+        <Row movie={comedy} title="Comedy" isLargeRow={false} />
+        <Row movie={animation} title="Animation" isLargeRow={false} />
+        <Row movie={horror} title="Horror" isLargeRow={false} />
+        <Row movie={mystery} title="Mystery" isLargeRow={false} />
+        <Row movie={scifi} title="SCIFI" isLargeRow={false} />
+        {/* <Row movie={romance} title="Romance" isLargeRow={false} /> */}
+        <Row movie={tv} title="Tv Shows" isLargeRow={false} />
+        <Row movie={action} title="Action" isLargeRow={false} />
+        <Row movie={uc} title="Up Coming" isLargeRow={false} />
         <Footer />
       </div>
     </>
   );
 };
-
-// object-contain w-[100%] max-h-[150px] rounded-sm ml-[10px] transition-all duration-250 ease-in-out delay-0
 
 export default Movies;
 
@@ -160,6 +146,24 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const upcoming = await upComing();
 
+  const westernM = await western();
+
+  const comedyM = await comedy();
+
+  const actionM = await action();
+
+  const animationM = await animation();
+
+  const horrorM = await horror();
+
+  const tvShows = await tv();
+
+  const mysteryM = await mystery();
+
+  const scifiM = await scifi();
+
+  const romanceM = await romance();
+
   return {
     props: {
       trending: trending?.data?.movies,
@@ -168,6 +172,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
       rated: top_rated?.data?.movies,
       np: now_playing?.data?.movies,
       uc: upcoming?.data?.movies,
+      western: westernM?.data?.movies,
+      comedy: comedyM?.data?.movies,
+      action: actionM?.data?.movies,
+      animation: animationM?.data?.movies,
+      horror: horrorM?.data?.movies,
+      tv: tvShows?.data?.movies,
+      mystery: mysteryM?.data?.movies,
+      scifi: scifiM?.data?.movies,
+      romance: romanceM?.data?.movies,
     },
   };
 };
