@@ -5,6 +5,7 @@ import MoreDetails from "./MoreDetails";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const MovieBg: React.FC<{ moviesData: singleMovie; casts: any[] }> = ({
   moviesData,
@@ -40,11 +41,21 @@ const MovieBg: React.FC<{ moviesData: singleMovie; casts: any[] }> = ({
       >
         <div className=" ml-[8px] sm:ml-[20px] mt-[200px] sm:mt-[100px] lg:mt-[210px] h-[190px]">
           <div className="font-bold uppercase tracking-widest cursor-pointer text-[#FFF] max-w-[100%] pb-[4.8px] text-4xl ">
-            <img
+            {/* <img
               // src="https://tinyurl.com/5n6bcp6s"
               src="https://shorturl.at/fvBFW"
               className="sm:w-[30%] max-w-[80%]"
               alt=""
+            /> */}
+            <Image
+              src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg"
+              alt=""
+              width={10}
+              height={10}
+              style={{
+                width: "30%",
+                maxWidth: "80%",
+              }}
             />
           </div>
 
