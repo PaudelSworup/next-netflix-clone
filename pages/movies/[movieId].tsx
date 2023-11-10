@@ -54,7 +54,7 @@ export async function getStaticPaths() {
   const popularResponse = await getPopular();
   const npResponse = await nowPlaying();
   const upcoming = await upComing();
-  const romanceRes = await romance();
+
   const animationRes = await animation();
   const scifiRes = await scifi();
   const actionRes = await action();
@@ -73,7 +73,6 @@ export async function getStaticPaths() {
 
   const uc = (await upcoming?.data?.movies) || [];
 
-  const romance_res = (await romanceRes?.data?.movies) || [];
   const horror_res = (await horrorRes?.data?.movies) || [];
   const animation_res = (await animationRes?.data?.movies) || [];
   const scifi_res = (await scifiRes?.data?.movies) || [];
@@ -90,7 +89,6 @@ export async function getStaticPaths() {
     ...popular,
     ...np,
     ...uc,
-    ...romance_res,
     ...horror_res,
     ...animation_res,
     ...scifi_res,
