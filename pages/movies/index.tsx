@@ -14,91 +14,99 @@ import {
   upComing,
   western,
 } from "@/APIs/moviesAPI";
-import {
-  GetServerSideProps,
-  GetStaticProps,
-  InferGetServerSidePropsType,
-} from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import React, { useEffect, useState } from "react";
-import { useQueries } from "react-query";
-import { movies } from "@/Interfaces/interface";
-import Posters from "../Posters";
 import Nav from "../Nav";
 import Banner from "../Banner";
-import Link from "next/link";
 import Footer from "../components/Footer";
 import { useAppSelector } from "@/Store/store";
 import Row from "../components/Row";
+import { useQueries } from "react-query";
 
 const Movies = ({
   trending,
   originals,
   popular,
   rated,
-  np,
-  uc,
   western,
   comedy,
-  action,
+
   animation,
   horror,
   scifi,
-  tv,
+
   mystery,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  // const results = useQueries([
-  //   {
-  //     queryKey: ["trending"],
-  //     queryFn: async () => await getTrending(),
-  //   },
+  const results = useQueries([
+    {
+      queryKey: ["trending"],
+      queryFn: async () => await getTrending(),
+    },
 
-  //   {
-  //     queryKey: ["originals"],
-  //     queryFn: async () => await getNetflixOriginals(),
-  //   },
+    {
+      queryKey: ["originals"],
+      queryFn: async () => await getNetflixOriginals(),
+    },
 
-  //   {
-  //     queryKey: ["popular"],
-  //     queryFn: async () => await getPopular(),
-  //   },
+    {
+      queryKey: ["popular"],
+      queryFn: async () => await getPopular(),
+    },
 
-  //   {
-  //     queryKey: ["rated"],
-  //     queryFn: async () => await topRated(),
-  //   },
+    {
+      queryKey: ["rated"],
+      queryFn: async () => await topRated(),
+    },
 
-  //   {
-  //     queryKey: ["np"],
-  //     queryFn: async () => await nowPlaying(),
-  //   },
+    {
+      queryKey: ["western"],
+      queryFn: async () => await western(),
+    },
 
-  //   {
-  //     queryKey: ["uc"],
-  //     queryFn: async () => await upComing(),
-  //   },
+    {
+      queryKey: ["animation"],
+      queryFn: async () => await animation(),
+    },
 
-  //   {
-  //     initialData: {
-  //       data: {
-  //         trending,
-  //         originals,
-  //         popular,
-  //         rated,
-  //         np,
-  //         uc,
-  //         western,
-  //         comedy,
-  //         action,
-  //         animation,
-  //         horror,
-  //         scifi,
-  //         romance,
-  //         tv,
-  //         mystery,
-  //       },
-  //     },
-  //   },
-  // ]);
+    {
+      queryKey: ["comedy"],
+      queryFn: async () => await comedy(),
+    },
+
+    {
+      queryKey: ["scifi"],
+      queryFn: async () => await scifi(),
+    },
+
+    {
+      queryKey: ["horror"],
+      queryFn: async () => await horror(),
+    },
+
+    {
+      queryKey: ["mystery"],
+      queryFn: async () => await mystery(),
+    },
+
+    {
+      initialData: {
+        data: {
+          trending,
+          originals,
+          popular,
+          rated,
+          western,
+          comedy,
+
+          animation,
+          horror,
+          scifi,
+
+          mystery,
+        },
+      },
+    },
+  ]);
 
   const { username } = useAppSelector((state) => state.auth);
   const [user, setUser] = useState<string | null>("");
@@ -116,7 +124,7 @@ const Movies = ({
         <Row movie={trending} title="Trending Now" isLargeRow={false} />
         <Row movie={popular} title="Most Popular" isLargeRow={false} />
         <Row movie={rated} title="Top Rated" isLargeRow={false} />
-        <Row movie={np} title="Now Playing" isLargeRow={false} />
+        {/* <Row movie={np} title="Now Playing" isLargeRow={false} /> */}
         <Row movie={western} title="Western" isLargeRow={false} />
         <Row movie={comedy} title="Comedy" isLargeRow={false} />
         <Row movie={animation} title="Animation" isLargeRow={false} />
@@ -124,9 +132,8 @@ const Movies = ({
         <Row movie={mystery} title="Mystery" isLargeRow={false} />
         <Row movie={scifi} title="SCIFI" isLargeRow={false} />
         {/* <Row movie={romance} title="Romance" isLargeRow={false} /> */}
-        <Row movie={tv} title="Tv Shows" isLargeRow={false} />
-        <Row movie={action} title="Action" isLargeRow={false} />
-        <Row movie={uc} title="Up Coming" isLargeRow={false} />
+
+        {/* <Row movie={uc} title="Up Coming" isLargeRow={false} /> */}
         <Footer />
       </div>
     </>
@@ -144,21 +151,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const top_rated = await topRated();
 
-  const now_playing = await nowPlaying();
-
-  const upcoming = await upComing();
-
   const westernM = await western();
 
   const comedyM = await comedy();
 
-  const actionM = await action();
-
   const animationM = await animation();
 
   const horrorM = await horror();
-
-  const tvShows = await tv();
 
   const mysteryM = await mystery();
 
@@ -170,14 +169,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       originals: netflixOriginals?.data?.movies,
       popular: popular?.data?.movies,
       rated: top_rated?.data?.movies,
-      np: now_playing?.data?.movies,
-      uc: upcoming?.data?.movies,
       western: westernM?.data?.movies,
       comedy: comedyM?.data?.movies,
-      action: actionM?.data?.movies,
+
       animation: animationM?.data?.movies,
       horror: horrorM?.data?.movies,
-      tv: tvShows?.data?.movies,
+
       mystery: mysteryM?.data?.movies,
       scifi: scifiM?.data?.movies,
     },

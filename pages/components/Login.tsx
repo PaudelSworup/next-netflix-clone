@@ -15,6 +15,7 @@ const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // const [user, setUser] = useState<string | null>(""); for testing purpose only
 
@@ -27,9 +28,11 @@ const Login = () => {
   // }, [username]);
 
   const handleLogin = (e: any) => {
+    setIsLoading(true);
     e.preventDefault();
     login({ email, password })
       .then((res) => {
+        setIsLoading(false);
         if (res?.error) {
           toast.error(res?.error, {
             position: "top-right",
@@ -57,10 +60,10 @@ const Login = () => {
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
           <Image
-            style={{ width: "120px", height: "32px" }}
-            width={10}
-            height={10}
-            src="./net.jpg"
+            style={{ width: "160px", height: "35px" }}
+            width={100}
+            height={100}
+            src="/net.jpg"
             alt="logo"
           />
         </Link>
@@ -106,13 +109,24 @@ const Login = () => {
                 />
               </div>
 
-              <button
-                onClick={handleLogin}
-                type="submit"
-                className="w-full text-white bg-[#E50914] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              >
-                Sign in
-              </button>
+              {isLoading ? (
+                <button
+                  disabled
+                  className="w-full text-white bg-[#E50914] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  type="submit"
+                >
+                  <span className="animate-pulse">Signing in...</span>
+                </button>
+              ) : (
+                <button
+                  onClick={handleLogin}
+                  type="submit"
+                  className="w-full text-white bg-[#E50914] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                >
+                  Sign in
+                </button>
+              )}
+
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?
                 <Link

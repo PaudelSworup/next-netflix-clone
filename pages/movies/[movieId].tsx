@@ -10,7 +10,6 @@ import {
   horror,
   mystery,
   nowPlaying,
-  romance,
   scifi,
   topRated,
   tv,
@@ -124,12 +123,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     console.log("movie", data?.data?.movies);
 
-    console.log("cast", casts?.data?.movies);
+    console.log("cast", casts?.data?.movies.slice(0, 3));
 
     return {
       props: {
         movies: data?.data?.movies,
-        cast: casts?.data?.movies,
+        cast: casts?.data?.movies.slice(0, 15),
       },
     };
   } catch (err: any) {

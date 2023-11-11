@@ -1,21 +1,22 @@
 import { movies } from "@/Interfaces/interface";
-import React from "react";
+import React, { useState } from "react";
 import Posters from "../Posters";
-import { title } from "process";
 
-const Row: React.FC<{ movie: any; title: string; isLargeRow: boolean }> = (
-  props
-) => {
+const Row: React.FC<{ movie: any; title: string; isLargeRow: boolean }> = ({
+  movie,
+  title,
+  isLargeRow,
+}) => {
   return (
     <>
-      <h2 className="text-white tracking-widest text-xl">{props.title}</h2>
+      <h2 className="text-white tracking-widest sm:ml-2 text-xl">{title}</h2>
       <div className="flex gap-3 scrollbar_hide overflow-x-scroll p-[20px] ">
-        {props.movie?.map((movie: movies) => {
+        {movie?.map((movie: movies) => {
           return (
             <Posters
               key={movie?.id}
               movieData={movie}
-              isLargeRow={props.isLargeRow}
+              isLargeRow={isLargeRow}
             />
           );
         })}

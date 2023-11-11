@@ -2,7 +2,7 @@ import { moviesData } from "@/Interfaces/interface";
 import { imageURL } from "@/config";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 
 const Posters: React.FC<{ movieData: moviesData; isLargeRow: any }> = ({
   movieData,
@@ -28,6 +28,7 @@ const Posters: React.FC<{ movieData: moviesData; isLargeRow: any }> = ({
       src={`${imageURL}${
         isLargeRow ? movieData?.backdrop_path : movieData.poster_path
       }`}
+      loading="lazy"
       alt=""
       width={300}
       height={100}
