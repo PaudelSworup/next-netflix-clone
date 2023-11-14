@@ -19,7 +19,8 @@ const Posters: React.FC<{ movieData: moviesData; isLargeRow: any }> = ({
     setIsHovering(false);
   };
 
-  console.log(movieData.poster_path == undefined ? "yes" : "no");
+  const posterPath = movieData?.poster_path;
+  const backdrop_path = movieData?.backdrop_path;
 
   return (
     <Image
@@ -27,10 +28,8 @@ const Posters: React.FC<{ movieData: moviesData; isLargeRow: any }> = ({
       onClick={() => router.push(`/movies/${movieData?.id}`)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      src={`https://image.tmdb.org/t/p/original${
-        isLargeRow
-          ? movieData?.backdrop_path
-          : movieData.poster_path || movieData.backdrop_path
+      src={`${imageURL}${
+        isLargeRow ? backdrop_path : posterPath || backdrop_path
       }`}
       loading="lazy"
       alt=""

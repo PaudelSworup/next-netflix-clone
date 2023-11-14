@@ -17,7 +17,6 @@ import Banner from "../Banner";
 import Footer from "../components/Footer";
 import { useAppSelector } from "@/Store/store";
 import Row from "../components/Row";
-import { useQueries } from "react-query";
 
 const Movies = ({
   trending,
