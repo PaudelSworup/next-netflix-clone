@@ -1,5 +1,4 @@
 import { movies } from "@/Interfaces/interface";
-import React, { useState } from "react";
 import Posters from "../Posters";
 
 const Row: React.FC<{ movie: any; title: string; isLargeRow: boolean }> = ({

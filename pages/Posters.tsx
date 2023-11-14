@@ -2,7 +2,7 @@ import { moviesData } from "@/Interfaces/interface";
 import { imageURL } from "@/config";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { lazy, useState } from "react";
+import React, { useState } from "react";
 
 const Posters: React.FC<{ movieData: moviesData; isLargeRow: any }> = ({
   movieData,
@@ -19,14 +19,18 @@ const Posters: React.FC<{ movieData: moviesData; isLargeRow: any }> = ({
     setIsHovering(false);
   };
 
+  console.log(movieData.poster_path == undefined ? "yes" : "no");
+
   return (
     <Image
       key={movieData?.id}
       onClick={() => router.push(`/movies/${movieData?.id}`)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      src={`${imageURL}${
-        isLargeRow ? movieData?.backdrop_path : movieData.poster_path
+      src={`https://image.tmdb.org/t/p/original${
+        isLargeRow
+          ? movieData?.backdrop_path
+          : movieData.poster_path || movieData.backdrop_path
       }`}
       loading="lazy"
       alt=""

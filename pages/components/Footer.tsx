@@ -6,10 +6,10 @@ const Footer = () => {
   return (
     <footer className="flex flex-col justify-center items-center py-4">
       <p className="text-[#6D6E75] text-center w-[550px]">
-        Website developed by
+        Webapp developed by{" "}
         <Link target="_blank" href="https://sworup-kc.vercel.app/">
           Sworup Kc
-        </Link>
+        </Link>{" "}
         -This project is exclusively created for educational and portfolio
         showcase purposes, with no commercial intentions. All rights and
         copyrights are retained by Netflix.
