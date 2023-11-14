@@ -32,7 +32,7 @@ const MovieBg: React.FC<{ moviesData: singleMovie; casts: any[] }> = ({
           // backgroundImage: `linear-gradient(to left, rgba(24, 24, 24, 0) 30%, #181818 70%), url(${imageURL}${moviesData?.backdrop_path})`,
           // backgroundImage: `linear-gradient(to right, rgba(24, 24, 24, 0.7) 50%, transparent 40%), url(${imageURL}${moviesData?.backdrop_path})`,
 
-          // backgroundImage: `linear-gradient(135deg, rgba(0, 0, 0, 0.1) 20%, transparent 80%), url(${imageURL}${moviesData?.backdrop_path})`,
+          // backgroundImage: `linear-gradient(135deg, rgba(0, 0, 0, 0.1) 20%, transparent 80%), url(${imageURL}${moviesData?.backdrop_path})`,,,
 
           filter: "saturate(1.5) grayscale(20%)",
           backgroundSize: "100% 100%",
